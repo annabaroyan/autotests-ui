@@ -10,25 +10,25 @@ with sync_playwright() as playwright:
 
     # Заполняем поля: "Email", "Username", "Password"
 
-    reg_email_input = page.get_by_test_id('registration-form-email-input').locator('input')
-    reg_email_input.fill('user.name@gmail.com')
+    registration_email_input = page.get_by_test_id('registration-form-email-input').locator('input')
+    registration_email_input.fill('user.name@gmail.com')
 
-    reg_username_input = page.get_by_test_id('registration-form-username-input').locator('input')
-    reg_username_input.fill('username')
+    registration_username_input = page.get_by_test_id('registration-form-username-input').locator('input')
+    registration_username_input.fill('username')
 
     reg_password_input = page.get_by_test_id('registration-form-password-input').locator('input')
     reg_password_input.fill('password')
 
     # Доп. проверка на активность кнопки "Registration"
 
-    reg_btn = page.get_by_test_id('registration-page-registration-button')
-    expect(reg_btn).is_enabled()
+    registration_button = page.get_by_test_id('registration-page-registration-button')
+    expect(registration_button).is_enabled()
 
     # Нажимаем на кнопку "Registration", после чего произойдет редирект на страницу Dashboard
-    reg_btn.click()
+    registration_button.click()
 
     # Проверяем, что на странице "Dashboard" отображается заголовок "Dashboard"
-    dashboard = page.get_by_test_id('dashboard-toolbar-title-text')
-    expect(dashboard).to_be_visible()
-    expect(dashboard).to_have_text('Dashboard')
+    dashboard_title = page.get_by_test_id('dashboard-toolbar-title-text')
+    expect(dashboard_title).to_be_visible()
+    expect(dashboard_title).to_have_text('Dashboard')
 
