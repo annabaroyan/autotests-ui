@@ -3,7 +3,8 @@ from playwright.sync_api import sync_playwright, expect
 with sync_playwright() as playwright:
     # Открываем браузер и создаем новую страницу
     browser = playwright.chromium.launch(headless=False)
-    page = browser.new_page()
+    context = browser.new_context()
+    page = context.new_page()
 
     # Переходим на страницу авторизации
     page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
@@ -22,7 +23,7 @@ with sync_playwright() as playwright:
     # Доп. проверка на активность кнопки "Registration"
 
     registration_button = page.get_by_test_id('registration-page-registration-button')
-    expect(registration_button).is_enabled()
+    expect(registration_button).to_be_enabled()
 
     # Нажимаем на кнопку "Registration", после чего произойдет редирект на страницу Dashboard
     registration_button.click()
@@ -32,3 +33,16 @@ with sync_playwright() as playwright:
     expect(dashboard_title).to_be_visible()
     expect(dashboard_title).to_have_text('Dashboard')
 
+    context.storage_state(path='browser_state.json')
+
+
+
+with sync_playwright() as playwright:
+    # Открываем браузер и создаем новую страницу
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context(storage_state='browser_state.json')
+    page = context.new_page()
+
+    page.goto('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
+
+    page.wait_for_timeout(3000)
