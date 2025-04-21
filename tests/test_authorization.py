@@ -25,5 +25,5 @@ def test_wrong_email_or_password(chromium_page: Page):
         expect(error_alert).to_be_visible()
         expect(error_alert).to_have_text("Wrong email or password")
 
-        # Задержка для наглядности выполнения теста (не рекомендуется использовать в реальных автотестах)
-        chromium_page.wait_for_timeout(2000)
+        # # Задержка для наглядности выполнения теста (не рекомендуется использовать в реальных автотестах)
+        # chromium_page.wait_for_timeout(2000)
