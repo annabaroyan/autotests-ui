@@ -1,6 +1,7 @@
 import pytest
 from playwright.sync_api import Page, expect
 
+from components.navigation.navbar_component import NavbarComponent
 from pages.base_page import BasePage
 
 
@@ -21,6 +22,9 @@ class DashboardPage(BasePage):
 
         self.scores_title = page.get_by_test_id('scores-widget-title-text')
         self.scores_chart = page.get_by_test_id('scores-scatter-chart')
+
+        # Добавляем компонент Navbar
+        self.navbar = NavbarComponent(page)
 
 
     def check_visible_dashboard_title(self):
