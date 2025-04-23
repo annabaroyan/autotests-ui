@@ -22,7 +22,7 @@ class CoursesListPage(BasePage):
         self.course_edit_menu_button = page.get_by_test_id("course-view-edit-menu-item")
         self.course_delete_menu_button = page.get_by_test_id("course-view-delete-menu-item")
 
-    def check_courses_title(self):
+    def check_visible_courses_title(self):
         expect(self.courses_title).to_be_visible()
         expect(self.courses_title).to_have_text("Courses")
 
